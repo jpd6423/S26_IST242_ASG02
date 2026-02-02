@@ -11,8 +11,11 @@ def showMenu():
     print("4. Search for book")
     print("5. Exit")
 
-def addBook():
-    pass
+#User adds a new book to the library list
+def addBook(library: list[str]):
+    title = input("Enter book title: ").strip()
+    library.append(title)
+    print(f"Added: {title}")
 
 def removeBook():
     pass
@@ -25,11 +28,13 @@ def searchBooks():
 
 #Main program that loops showMenu() and lets user select an option
 def main():
+    library: list[str] = []
+
     while True:
         showMenu()
         choice = input("Choose an option: ").strip()
         if choice == "1":
-            addBook()
+            addBook(library)
         elif choice == "2":
             removeBook()
         elif choice == "3":
@@ -37,6 +42,7 @@ def main():
         elif choice == "4":
             searchBooks()
         elif choice == "5":
+            print("Goodbye!")
             break
         else:
             print("Invalid option, choose again")
