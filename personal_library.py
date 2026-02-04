@@ -20,8 +20,13 @@ def addBook(library: list[str]):
 def removeBook():
     pass
 
-def listBooks():
-    pass
+def listBooks(library: list[str]):
+    if not library:
+        print("The library is empty!")
+        return
+    print ("Book(s) in your library: ")
+    for book in library:
+        print(f' * {book}')
 
 def searchBooks():
     pass
@@ -38,7 +43,7 @@ def main():
         elif choice == "2":
             removeBook()
         elif choice == "3":
-            listBooks()
+            listBooks(library)
         elif choice == "4":
             searchBooks()
         elif choice == "5":

@@ -23,6 +23,14 @@ class TestPersonalLibrary(unittest.TestCase):
             addBook(library)
         self.assertEqual(library, ['Dune'])
 
+    def test_listBook_listsMoreThanOneBook(self):
+        library = ['Dune',"Dune Messiah"]
+        with patch("sys.stdout", new=StringIO()) as out:
+            listBooks(library)
+            output = out.getvalue()
+        self.assertIn('Dune', output)
+        self.assertIn("Dune Messiah", output)
+
 # Call the test class main method
 if __name__ == "__main__":
     unittest.main()
