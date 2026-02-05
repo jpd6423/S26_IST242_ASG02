@@ -11,15 +11,25 @@ def showMenu():
     print("4. Search for book")
     print("5. Exit")
 
-#User adds a new book to the library list
+# User adds a new book to the library list
 def addBook(library: list[str]):
     title = input("Enter book title: ").strip()
-    library.append(title)
-    print(f"Added: {title}")
+    if title in library:
+        print("Cannot add duplicate of book, try again.")
+    else:
+        library.append(title)
+        print(f"Added: {title}")
 
-def removeBook():
-    pass
+# User removes an existing book from the library list
+def removeBook(library: list[str]):
+    title = input("Enter the title of the book you want to remove: ").strip()
+    if title in library:
+        library.remove(title)
+        print(f"Removed: {title}")
+    else:
+        print("Could not find title")
 
+# User lists all the existing books from library vertically
 def listBooks(library: list[str]):
     if not library:
         print("The library is empty!")
@@ -41,7 +51,7 @@ def main():
         if choice == "1":
             addBook(library)
         elif choice == "2":
-            removeBook()
+            removeBook(library)
         elif choice == "3":
             listBooks(library)
         elif choice == "4":
