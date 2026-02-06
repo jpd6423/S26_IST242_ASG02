@@ -6,10 +6,10 @@ from unittest.mock import patch
 from io import StringIO
 #import our user made function for testing
 from personal_library import(
-    add_book,
-    remove_book,
-    list_book,
-    search_book
+    addBook,
+    removeBook,
+    listBooks,
+    searchBooks
 )
 #test class 
 class TestPersonallibrary(unittest.TestCase):
@@ -17,14 +17,14 @@ class TestPersonallibrary(unittest.TestCase):
     def test_add_book_normal_case(self):
         library =[]
         with patch("builtins.input",return_value ="Dune"):
-           add_book(library)
+           addBook(library)
         
         self.assertEqual(library, ["Dune"])
     #test case for multiple books
     def test_list_more_than_one_book(self):
         library= ["Dune","Dune Messiah"]
         with patch("sys.stdout",new=StringIO()) as out:
-            list_book(library)
+            listBooks(library)
             output = out.getvalue()
         self.assertIn("Dune", output)
         self.assertIn("Dune Messiah", output)
@@ -32,17 +32,17 @@ class TestPersonallibrary(unittest.TestCase):
     def test_remove_book(self):
         library =["book"]
         with patch("builtins.input", return_value="book"):
-            remove_book(library)
+            removeBook(library)
         self.assertEqual(library,[])
     #test search function
     def test_search_book(self):
         library =["book"]
         with patch("builtins.input", return_value="book"):
             with patch("sys.stdout", new=StringIO()) as out:
-                search_book(library)
+                searchBooks(library)
             output = out.getvalue()
         self.assertIn("book",output)
-
+    
       
 
     
